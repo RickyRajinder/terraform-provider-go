@@ -2,11 +2,13 @@ package main
 
 import (
 	"github.com/hashicorp/terraform/plugin"
-	"github.com/rickyrajinder/terraform-provider-go/provider"
+	"github.com/hashicorp/terraform/terraform"
 )
 
 func main() {
 	plugin.Serve(&plugin.ServeOpts{
-		ProviderFunc: provider.Provider,
+		ProviderFunc: func() terraform.ResourceProvider {
+			return provider()
+		},
 	})
 }
